@@ -15,6 +15,7 @@ app.post(
     "/shortUrls",
     async (req, res) => { res.send(await ShortUrl.create(req.body.longUrl)); });
 
+// TODO: change method to GET
 app.post("/longUrls", async (req, res) => {
   let longUrl = await ShortUrl.get(req.body.shortUrl);
   res.redirect(longUrl);
