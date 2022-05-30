@@ -10,11 +10,11 @@ async function create(longUrl) {
     return dbLongUrl; // if URL is in db return shorturl
   } else {
     // if URL is not in db
-    return intoDb(longUrl);
+    return writeToDb(longUrl);
   }
 }
 
-async function intoDb(longUrl) {
+async function writeToDb(longUrl) {
   let shortUrl = "https://peter.de/" + nanoid(8);
   if ((await client.get(shortUrl)) == null) {
     // check if hash collision
@@ -36,6 +36,6 @@ async function initRedis() {
 }
 module.exports = {
   create : create,
-  get: get,
+  get : get,
   initRedis: initRedis,
 };
