@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity=
+    "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <h1>URL Shortener with Redis</h1>
+
+    <form action="/shortUrls" method="post" class="my-4 form-inline">
+        <input required="" placeholder="URL" type="url" name="longUrl" id="longUrl" class="form-control col mr-2"> <button class="btn btn-success"
+        type="submit">Shorten URL</button>
+    </form>
+
+    <form action="/longUrls" method="post" class="my-4 form-inline">
+        <input required="" placeholder="TinyURL" type="text" name="shortUrl" id="shortUrl" class="form-control col mr-2"> <button class=
+        "btn btn-success" type="submit">Get real URL</button>
+    </form>
+</body>
+</html>
