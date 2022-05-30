@@ -4,20 +4,25 @@ const client = redis.createClient();
 
 // shorten a real URL
 async function create(longUrl) {
-  let shortUrl = "https://peter.de/" + nanoid(8);
-  if ((await client.get(longUrl)) !== null) {
+  let dbLongUrl = await client.get(longUrl);
+  if (dbLongUrl !== null) {
     // check if URL is already in db
-    return await client.get(longUrl); // if URL is in db return shorturl
+    return dbLongUrl; // if URL is in db return shorturl
   } else {
     // if URL is not in db
-    if ((await client.get(shortUrl)) == null) {
-      // check if hash collision
-      client.multi().set(shortUrl, longUrl).set(longUrl, shortUrl).exec();
-      return client.get(longUrl);
-    } else {
-      // if collision call again
-      create(longUrl);
-    }
+    return intoDb(longUrl);
+  }
+}
+
+async function intoDb(longUrl) {
+  let shortUrl = "https://peter.de/" + nanoid(8);
+  if ((await client.get(shortUrl)) == null) {
+    // check if hash collision
+    client.multi().set(shortUrl, longUrl).set(longUrl, shortUrl).exec();
+    return client.get(longUrl);
+  } else {
+    // if collision call again
+    intoDb(longUrl);
   }
 }
 
@@ -31,6 +36,6 @@ async function initRedis() {
 }
 module.exports = {
   create : create,
-  get : get,
+  get: get,
   initRedis: initRedis,
 };
