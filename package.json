@@ -1,0 +1,18 @@
+{
+  "name": "urlshortener",
+  "version": "1.0.0",
+  "description": "Url Shortener Coding Challenge",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nanoid": "^3.3.4",
+    "nodemon": "^2.0.16",
+    "redis": "^4.1.0"
+  }
+}
